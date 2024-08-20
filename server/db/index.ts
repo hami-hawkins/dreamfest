@@ -10,6 +10,7 @@ const config = knexFile[environment]
 export const connection = knex(config)
 
 export async function getAllLocations() {
-  const locations: unknown[] = [] // TODO: replace this with your knex query
+  const locations = await connection<Location>('locations').select('*')
+  console.log(locations)
   return locations as Location[]
 }
