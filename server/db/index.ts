@@ -35,3 +35,11 @@ export async function getEventsByDay(
     )
   return events
 }
+
+//EDITING LOCATIONS
+// show the form
+
+export async function getLocationById(id: number): Promise<LocationData> {
+  const location = await connection<Location>('locations').where({ id }).first()
+  return location as LocationData
+}
