@@ -1,5 +1,9 @@
 import express from 'express'
-import { getAllLocations, getLocationById } from '../db/index.ts'
+import {
+  getAllLocations,
+  getLocationById,
+  updateLocation,
+} from '../db/index.ts'
 
 import * as db from '../db/index.ts'
 
@@ -33,6 +37,7 @@ router.patch('/:id', async (req, res, next) => {
     const id = Number(req.params.id)
     const { name, description } = req.body
     // TODO: call db.updateLocation with these details
+    await db.updateLocation({ id, name, description })
     res.sendStatus(204)
   } catch (e) {
     next(e)

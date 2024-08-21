@@ -38,8 +38,20 @@ export async function getEventsByDay(
 
 //EDITING LOCATIONS
 // show the form
-
 export async function getLocationById(id: number): Promise<LocationData> {
   const location = await connection<Location>('locations').where({ id }).first()
   return location as LocationData
+}
+
+// submit the form
+export async function updateLocation(updatedLocation: {
+  id: number
+  name: string
+  description: string
+}) {
+  const { id, name, description } = updatedLocation
+  const result = await connection<Location>('locations')
+    .where({ id })
+    .update({ name, description }, ['id'])
+  return result
 }
