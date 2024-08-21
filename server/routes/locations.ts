@@ -1,9 +1,5 @@
 import express from 'express'
-import {
-  getAllLocations,
-  getLocationById,
-  updateLocation,
-} from '../db/index.ts'
+import { getAllLocations, getLocationById } from '../db/index.ts'
 
 import * as db from '../db/index.ts'
 

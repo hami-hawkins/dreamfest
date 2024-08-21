@@ -55,3 +55,20 @@ export async function updateLocation(updatedLocation: {
     .update({ name, description }, ['id'])
   return result
 }
+
+//ADDING AND DELETING EVENTS
+//add a new event
+export async function addNewEvent(event: EventData) {
+  const { day, time, name, description, locationId: location_id } = event
+  const result = connection<Event>('events').insert(
+    {
+      day,
+      time,
+      name,
+      description,
+      location_id,
+    },
+    ['id'],
+  )
+  return result
+}
