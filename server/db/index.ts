@@ -78,3 +78,20 @@ export async function deleteEvent(id: number) {
   const result = await connection<Event>('events').where({ id }).del()
   return result
 }
+
+//get event by ID
+export async function getEventById(id: number) {
+  const results = await connection('events')
+    .select(
+      'events.id as id',
+      'events.location_id as locationId',
+      'events.day as day',
+      'events.time as time',
+      'events.name as name',
+      'events.description as description',
+    )
+    .where({ id })
+    .first()
+
+  return results
+}
